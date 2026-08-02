@@ -8,6 +8,9 @@ export async function onRequestPost({ request, env }) {
     const email = (data.email || '').toString().slice(0, 200).trim();
     const phone = (data.phone || '').toString().slice(0, 60).trim();
     const cabinet = (data.cabinet || '').toString().slice(0, 80).trim();
+    const org = (data.org || '').toString().slice(0, 200).trim();
+    const budget = (data.budget || '').toString().slice(0, 60).trim();
+    const timeline = (data.timeline || '').toString().slice(0, 60).trim();
     const message = (data.message || '').toString().slice(0, 4000).trim();
     if (data.company) return new Response(JSON.stringify({ ok: true }), { headers: cors }); // honeypot
     if (!name || !email || !message) {
@@ -17,7 +20,7 @@ export async function onRequestPost({ request, env }) {
     const from = env.QUOTE_FROM || 'DreamAuthentics <quotes@cyberhopeai.com>';
     const html = `<h2>New DreamAuthentics quote request</h2>
       <p><b>Name:</b> ${esc(name)}</p><p><b>Email:</b> ${esc(email)}</p>
-      <p><b>Phone:</b> ${esc(phone) || '—'}</p><p><b>Cabinet:</b> ${esc(cabinet) || '—'}</p>
+      <p><b>Phone:</b> ${esc(phone) || '—'}</p><p><b>Interested in:</b> ${esc(cabinet) || '—'}</p><p><b>Organization:</b> ${esc(org) || '—'}</p><p><b>Budget:</b> ${esc(budget) || '—'}</p><p><b>Timeline:</b> ${esc(timeline) || '—'}</p>
       <p><b>Message:</b></p><p>${esc(message).replace(/\n/g, '<br>')}</p>`;
     const r = await fetch('https://api.resend.com/emails', {
       method: 'POST',

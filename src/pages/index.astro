@@ -44,9 +44,8 @@ const cabinets = [
         : <img class="hl" src={`/img/hero/${l.img}`} alt={l.name||''} style={box} loading="eager" />;
     })}
     {heroCtas.map(c => (
-      <div class="herocta" style={`left:${pct(c.cx,GW)};top:74%`}>
-        <div class="hname">{c.name}</div>
-        <a class="hquote" href={c.href}>Request a Quote</a>
+      <div class="herocta" style={`left:${pct(c.cx,GW)};top:88%`}>
+        <a class="hquote" href={c.href} title={c.name}>Request a Quote</a>
       </div>
     ))}
   </section>

@@ -2,41 +2,60 @@
 import Base from '../../layouts/Base.astro';
 import { cabinets } from '../../data/cabinets.js';
 ---
-<Base title="Contact & Request a Quote — DreamAuthentics">
+<Base title="Start Your Build — DreamAuthentics">
   <section class="section" style="background:linear-gradient(180deg,#0f1d3d,#0a1226)">
     <div class="wrap" style="text-align:center;max-width:820px">
       <span class="eyebrow">Let's Build Your Dream Machine</span>
-      <h2>Contact &amp; Request a Quote</h2>
-      <p style="color:var(--mut);font-size:1.12rem">Tell us what you're dreaming of and we'll design a quote around it — cabinet, art, games, and controls, made to order.</p>
+      <h2>Start Your Build</h2>
+      <p style="color:var(--mut);font-size:1.12rem">Tell us what you're dreaming of — the cabinet, the games, the art — and we'll design a quote around it.</p>
     </div>
   </section>
   <section class="section"><div class="wrap contactgrid">
     <div class="prose">
-      <h3>Talk to us</h3>
+      <h3>Talk to a human</h3>
       <p><b>Phone:</b> <a href="tel:8007898424">800-789-8424</a></p>
-      <p>Every DreamAuthentics arcade is hand-built and fully custom. Whether you know exactly which cabinet you want or you're just starting to dream, we'll walk you through the options and build a quote with no pressure.</p>
+      <p>Every DreamAuthentics arcade is hand-built and fully custom. Whether you know exactly which cabinet you want or you're just starting to dream, we'll walk you through the options — no pressure.</p>
+      <p>After you submit, a real person from DreamAuthentics reviews your request and follows up to talk through your build and pricing.</p>
       <p>Prefer to browse first? See the <a href="/arcades/">cabinets</a> or the <a href="/portfolio/">design art portfolio</a>.</p>
     </div>
     <div>
-      <div id="ok" class="formok">Thanks! Your request is on its way — we'll be in touch shortly.</div>
+      <div id="ok" class="formok">Thanks! Your request is on its way — a human from DreamAuthentics will review it and get back to you. If it's urgent, call 800-789-8424.</div>
       <div id="err" class="formerr"></div>
       <form class="form" id="quoteform">
         <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Company<input name="company" tabindex="-1" autocomplete="off"/></label></div>
         <div class="row">
           <div><label for="name">Name *</label><input id="name" name="name" required /></div>
-          <div><label for="phone">Phone</label><input id="phone" name="phone" /></div>
+          <div><label for="email">Email *</label><input id="email" name="email" type="email" required /></div>
         </div>
-        <div><label for="email">Email *</label><input id="email" name="email" type="email" required /></div>
-        <div><label for="cabinet">Interested in</label>
-          <select id="cabinet" name="cabinet">
-            <option value="">Not sure yet</option>
-            {Object.values(cabinets).map(c => <option value={c.name}>{c.name}</option>)}
-            <option value="Custom">Something custom</option>
+        <div class="row">
+          <div><label for="phone">Phone</label><input id="phone" name="phone" /></div>
+          <div><label for="org">Organization</label><input id="org" name="org" placeholder="Home, business, event…" /></div>
+        </div>
+        <div class="row">
+          <div><label for="cabinet">Interested In</label>
+            <select id="cabinet" name="cabinet">
+              <option value="">Not sure yet</option>
+              {Object.values(cabinets).map(c => <option value={c.name}>{c.name}</option>)}
+              <option value="Controls / Parts">Controls / Parts</option>
+              <option value="Something custom">Something custom</option>
+            </select>
+          </div>
+          <div><label for="budget">Budget Range</label>
+            <select id="budget" name="budget">
+              <option value="">Not sure yet</option>
+              <option>Under $3K</option><option>$3K–$6K</option><option>$6K–$10K</option><option>$10K+</option>
+            </select>
+          </div>
+        </div>
+        <div><label for="timeline">Timeline</label>
+          <select id="timeline" name="timeline">
+            <option value="">Just exploring</option>
+            <option>As soon as possible</option><option>Within 30 days</option><option>60–90 days</option><option>Later this year</option>
           </select>
         </div>
-        <div><label for="message">Tell us about your dream arcade *</label><textarea id="message" name="message" rows="5" required></textarea></div>
-        <div><button class="btn" type="submit" id="sub">Send Request</button></div>
-        <p class="form-note">Or call us directly at 800-789-8424.</p>
+        <div><label for="message">Tell us about your dream arcade *</label><textarea id="message" name="message" rows="5" required placeholder="Games you love, the room it's going in, art ideas, budget thoughts…"></textarea></div>
+        <div><button class="btn" type="submit" id="sub">Request My Quote →</button></div>
+        <p class="form-note">After you submit, a human from DreamAuthentics will review your request. Or call 800-789-8424.</p>
       </form>
     </div>
   </div></section>
@@ -49,10 +68,10 @@ import { cabinets } from '../../data/cabinets.js';
       try{
         const r=await fetch('/api/quote',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(f)))});
         const j=await r.json();
-        if(j.ok){f.style.display='none';ok.style.display='block';window.scrollTo({top:ok.offsetTop-120,behavior:'smooth'});}
+        if(j.ok){f.style.display='none';ok.style.display='block';window.scrollTo({top:ok.offsetTop-140,behavior:'smooth'});}
         else{er.textContent=j.error||'Something went wrong. Please call 800-789-8424.';er.style.display='block';}
       }catch{er.textContent='Network error. Please call 800-789-8424.';er.style.display='block';}
-      b.disabled=false;b.textContent='Send Request';
+      b.disabled=false;b.textContent='Request My Quote →';
     });
   </script>
 </Base>
