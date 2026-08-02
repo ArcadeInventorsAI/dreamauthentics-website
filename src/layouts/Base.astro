@@ -2,7 +2,24 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import { asSeenOn } from '../data/nav.js';
-const { title = 'DreamAuthentics — Custom Home Arcades', description = 'Industry-leading custom video arcade cabinets since 2000. Defining the personal video arcade.' } = Astro.props;
+const {
+  title = 'Custom Home Arcade Machines — DreamAuthentics | Since 2000',
+  description = 'DreamAuthentics builds the finest custom home arcade machines on the planet — handcrafted cabinets, custom art, and up to 30,000 licensed & emulated classic games. Defining the personal video arcade since 2000. As seen on FOX, CBS, MTV & G4.',
+  image = '/img/cab/works-mame.jpg',
+  ogType = 'website',
+} = Astro.props;
+const site = 'https://dreamauthentics.com';
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL(image, site).href;
+// GA4 Measurement ID — set PUBLIC_GA_ID at build time when the GA4 property exists (see SEO notes).
+const GA_ID = import.meta.env.PUBLIC_GA_ID || '';
+const org = {
+  "@context":"https://schema.org","@type":"Organization",
+  "name":"DreamAuthentics","url":site,"logo":`${site}/img/brand/logo.png`,
+  "description":"Custom home arcade machine design and manufacturing since 2000.",
+  "foundingDate":"2000","telephone":"+1-800-789-8424",
+  "sameAs":["https://www.youtube.com/@RickBarretto"]
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -11,6 +28,25 @@ const { title = 'DreamAuthentics — Custom Home Arcades', description = 'Indust
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <!-- Open Graph -->
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content="DreamAuthentics" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  <meta name="theme-color" content="#0a1226" />
+  <link rel="icon" href="/img/brand/logo.png" />
+  <script type="application/ld+json" set:html={JSON.stringify(org)} />
+  {GA_ID && <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>}
+  {GA_ID && <script set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`} />}
 </head>
 <body>
   <div class="callbar">

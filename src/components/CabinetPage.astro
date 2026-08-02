@@ -3,8 +3,20 @@ import Base from '../layouts/Base.astro';
 import { cabinets } from '../data/cabinets.js';
 const { slug } = Astro.props;
 const c = cabinets[slug];
+const product = {
+  "@context":"https://schema.org","@type":"Product",
+  "name":`DreamAuthentics ${c.name} Custom Arcade Machine`,
+  "description":c.blurb,
+  "brand":{"@type":"Brand","name":"DreamAuthentics"},
+  "category":"Custom Home Arcade Machine",
+  "image":`https://dreamauthentics.com${c.konzola}`,
+  "offers":{"@type":"Offer","availability":"https://schema.org/InStock","priceCurrency":"USD","url":`https://dreamauthentics.com/arcades/${slug}/`}
+};
 ---
-<Base title={`${c.name} — DreamAuthentics Custom Arcade`} description={c.blurb}>
+<Base title={`${c.name} — Custom Home Arcade Machine | DreamAuthentics`}
+      description={`The DreamAuthentics ${c.name}: a handcrafted custom home arcade machine with custom art, commercial-grade controls, and hundreds of licensed & emulated classic games. ${c.tagline}. Request a quote.`}
+      image={c.konzola}>
+  <script type="application/ld+json" set:html={JSON.stringify(product)} />
   <section class="cabhero" style={`background-image:url('${c.bg}')`}>
     <div class="wrap inner">
       <div class="copy">
