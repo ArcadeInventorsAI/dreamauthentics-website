@@ -52,13 +52,17 @@ h1,h2,h3{font-family:var(--head);font-weight:700;line-height:1.1;margin:0 0 .4em
 .nav a:hover{color:var(--cyan)}
 .nav>ul>li>a::after{content:"";display:block;height:2px;background:var(--cyan);width:0;margin-top:5px;transition:width .18s;box-shadow:var(--glow)}
 .nav>ul>li:hover>a::after{width:100%}
-.nav li>ul{position:absolute;left:0;top:100%;min-width:238px;background:#0b1730;border:1px solid var(--line);
-  box-shadow:0 16px 34px rgba(0,0,0,.55);display:none;flex-direction:column;z-index:60;border-radius:0 0 10px 10px;overflow:hidden}
-.nav li:hover>ul{display:flex}
-.nav li>ul a{padding:12px 18px;font-size:.82rem;text-transform:none;letter-spacing:.3px;border-bottom:1px solid #16223f}
-.nav li>ul a:hover{background:#122a52;color:var(--cyan)}
-.nav li>ul li>ul{left:100%;top:0;border-radius:0 10px 10px 0}
-.nav .caret{opacity:.55;font-size:.7em}
+.nav li>ul{position:absolute;left:0;top:100%;min-width:250px;background:#0b1730;border:1px solid var(--line);
+  box-shadow:0 16px 34px rgba(0,0,0,.55);display:none;flex-direction:column;z-index:60;border-radius:0 0 10px 10px}
+.nav li:hover>ul,.nav li:focus-within>ul{display:flex}
+.nav li>ul li{position:relative}
+.nav li>ul a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 18px;font-size:.82rem;text-transform:none;letter-spacing:.3px;border-bottom:1px solid #16223f}
+.nav li>ul a:hover,.nav li>ul li:hover>a{background:#12325f;color:#fff}
+/* 3rd-level flyout appears to the right of its parent item */
+.nav li>ul li>ul{left:100%;top:-1px;border-radius:0 10px 10px 10px}
+/* highlight the parent item whose flyout is open (like the original) */
+.nav li>ul li:hover{background:#0e2650}
+.nav .caret{opacity:.6;font-size:.75em;margin-left:auto}
 /* CTA item */
 .nav li.cta>a{color:#231a00;background:linear-gradient(180deg,var(--gold),#d99400);margin:8px 8px 8px 14px;border-radius:7px;
   box-shadow:0 3px 0 #9c6b00;font-family:var(--disp);font-size:.62rem;letter-spacing:0;padding:12px 16px}

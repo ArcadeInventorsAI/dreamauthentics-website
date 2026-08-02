@@ -1,6 +1,35 @@
 ---
-import Page from '../../components/Page.astro';
+import Base from '../../layouts/Base.astro';
+import games from '../../data/games.json';
 ---
-<Page title="Game List" eyebrow="Play" blurb="Hundreds of classic titles across every era, curated and licensed for your custom cabinet.">
-  <p style="color:var(--mut);text-align:center">Content for this section is being migrated from our archive. Call <a href="tel:8007898424">800-789-8424</a> or <a href="/contact/">contact us</a> and we'll help right away.</p>
-</Page>
+<Base title="Game List — DreamAuthentics" description={`Over ${games.length} classic arcade games available on DreamAuthentics custom cabinets.`}>
+  <section class="section" style="background:linear-gradient(180deg,#0f1d3d,#0a1226)">
+    <div class="wrap" style="text-align:center;max-width:860px">
+      <span class="eyebrow">Hundreds Of Classic Titles</span>
+      <h2>Game List</h2>
+      <p style="color:var(--mut);font-size:1.12rem">Every DreamAuthentics arcade plays a huge library of classic games — <b style="color:var(--cyan)">{games.length.toLocaleString()}+ titles</b> spanning the golden age of the arcade. Search below to find your favorites, then <a href="/contact/">request a quote</a> to build your dream machine.</p>
+    </div>
+  </section>
+  <section class="section"><div class="wrap">
+    <div class="form" style="max-width:520px;margin:0 auto 26px">
+      <input id="gsearch" type="search" placeholder={`Search ${games.length.toLocaleString()} games…`} aria-label="Search games" />
+      <p class="form-note" id="gcount" style="text-align:center"></p>
+    </div>
+    <div id="glist" style="columns:4 200px;column-gap:26px;font-size:.95rem;color:var(--mut)">
+      {games.map(g => <div class="gitem" style="break-inside:avoid;padding:3px 0">{g}</div>)}
+    </div>
+    <p style="text-align:center;margin-top:40px"><a class="btn" href="/contact/">Request a Quote</a></p>
+  </div></section>
+  <script is:inline>
+    const items=[...document.querySelectorAll('.gitem')];
+    const box=document.getElementById('gsearch'), cnt=document.getElementById('gcount');
+    const total=items.length;
+    function upd(){
+      const q=box.value.trim().toLowerCase();
+      let n=0;
+      for(const it of items){const show=!q||it.textContent.toLowerCase().includes(q);it.style.display=show?'':'none';if(show)n++;}
+      cnt.textContent=q?`${n} of ${total} games`:`${total} games`;
+    }
+    box.addEventListener('input',upd); upd();
+  </script>
+</Base>
