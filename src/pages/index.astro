@@ -17,6 +17,15 @@ const layers = [
   { img:'yourdreammachine.png', x:408, y:591, w:404, h:115, href:'/arcades/' },
 ];
 const pct = (v,d) => (v/d*100).toFixed(3)+'%';
+// name label + Request a Quote button under each hero cabinet (x-center on the 1240 grid)
+const heroCtas = [
+  { name:'Eladius',    cx:85,   href:'/arcades/eladius/' },
+  { name:'Sting',      cx:211,  href:'/arcades/sting/' },
+  { name:'Katana',     cx:333,  href:'/arcades/katana/' },
+  { name:'Ultra Quad', cx:879,  href:'/arcades/ultra-quad/' },
+  { name:'Excalibur',  cx:1008, href:'/arcades/excalibur/' },
+  { name:'Kiocade',    cx:1125, href:'/arcades/kiocade/' },
+];
 const cabinets = [
   { name:'Excalibur',  img:'mala5.png', href:'/arcades/excalibur/',  tag:'The flagship 4-player showpiece' },
   { name:'Katana',     img:'mala3.png', href:'/arcades/katana/',     tag:'Sleek single-player icon' },
@@ -34,6 +43,12 @@ const cabinets = [
         ? <a href={l.href} class="hl" style={box} title={l.name}><img src={`/img/hero/${l.img}`} alt={l.name||''} style="width:100%;height:100%;object-fit:contain" loading="eager" /></a>
         : <img class="hl" src={`/img/hero/${l.img}`} alt={l.name||''} style={box} loading="eager" />;
     })}
+    {heroCtas.map(c => (
+      <div class="herocta" style={`left:${pct(c.cx,GW)};top:74%`}>
+        <div class="hname">{c.name}</div>
+        <a class="hquote" href={c.href}>Request a Quote</a>
+      </div>
+    ))}
   </section>
 
   <section class="section">
@@ -52,6 +67,13 @@ const cabinets = [
     </div>
   </section>
 
+
+  <section class="mame">
+    <div class="wrap">
+      <div class="msg"><b>Game Emulator</b> and<br/><b>100% MAME&trade; Compatible</b></div>
+      <div class="sys"><span>MAME&trade;</span><span>ATARI</span><span>NES</span><span>SEGA</span><span>NEO&middot;GEO</span><span>+ hundreds more</span></div>
+    </div>
+  </section>
   <section class="section" style="background:linear-gradient(180deg,#0b1631,#0a1226)">
     <div class="wrap">
       <span class="eyebrow">Pick Your Personal Video Arcade</span>

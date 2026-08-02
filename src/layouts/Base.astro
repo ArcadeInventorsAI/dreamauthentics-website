@@ -15,8 +15,8 @@ const { title = 'DreamAuthentics — Custom Home Arcades', description = 'Indust
 <body>
   <div class="callbar">
     <div class="wrap">
-      <a href="tel:8007898424">800-789-8424</a>
-      <span class="tag">Industry-Leading Custom Gaming Innovators Since 2000</span>
+      <a href="tel:8007898424"><img src="/img/brand/header-call-icon.png" alt="" class="callicon" />800-789-8424</a>
+      <span class="tag">Industry Leading Custom Gaming<br/>Innovators Since 2000</span>
     </div>
   </div>
 
@@ -24,8 +24,10 @@ const { title = 'DreamAuthentics — Custom Home Arcades', description = 'Indust
     <div class="wrap">
       <a class="logo" href="/"><img src="/img/brand/logo.png" alt="DreamAuthentics" /></a>
       <div class="seenon">
-        <span class="lbl">As Seen On</span>
-        {asSeenOn.map(l => <img src={l.src} alt={l.alt} title={l.alt} />)}
+        <img class="seentitle" src="/img/brand/asseen.png" alt="As Seen On" />
+        <div class="logos">
+          {asSeenOn.map(l => <img src={l.src} alt={l.alt} title={l.alt} />)}
+        </div>
       </div>
     </div>
   </header>

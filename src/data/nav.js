@@ -63,6 +63,7 @@ export const nav = [
     ],
   },
   { label: 'Contact', href: '/contact/' },
+  { label: 'Request a Quote', href: '/contact/', cta: true },
 ];
 
 export const asSeenOn = [
