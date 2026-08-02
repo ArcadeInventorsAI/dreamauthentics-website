@@ -164,6 +164,12 @@ const stripSlash = (s) => (s.length > 1 ? s.replace(/\/+$/, "") : s);
 export async function onRequest(context) {
   const { request, next } = context;
   const url = new URL(request.url);
+
+  // Canonical host: 301 www.* -> apex so Google consolidates to one hostname.
+  if (url.hostname.startsWith("www.")) {
+    return Response.redirect("https://" + url.hostname.slice(4) + url.pathname + url.search, 301);
+  }
+
   const path = url.pathname;
 
   // Never touch API routes or static asset dirs.
