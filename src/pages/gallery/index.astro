@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import slides from '../../data/portfolio.json';
+const g = slides.slice(0, 48);
+---
+<Base title="Gallery — DreamAuthentics">
+  <section class="section" style="background:linear-gradient(180deg,#0f1d3d,#0a1226)">
+    <div class="wrap" style="text-align:center;max-width:900px">
+      <span class="eyebrow">See The Builds</span><h2>Gallery</h2>
+      <p style="color:var(--mut);font-size:1.12rem">Custom DreamAuthentics arcades in the wild. For the full design archive, visit the <a href="/portfolio/">Design Art Portfolio</a>.</p>
+    </div>
+  </section>
+  <section class="section"><div class="wrap">
+    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr))">
+      {g.map((s,i)=>(<a class="card" href={s} target="_blank" rel="noopener"><img src={s} alt={`Gallery ${i+1}`} loading="lazy" style="aspect-ratio:4/3;object-fit:cover"/></a>))}
+    </div>
+  </div></section>
+</Base>

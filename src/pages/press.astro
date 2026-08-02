@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import { clippings, videos, featured, channelUrl } from '../data/press.js';
+---
+<Base title="Press & Media — DreamAuthentics">
+  <section class="section" style="background:linear-gradient(180deg,#0f1d3d,#0a1226)">
+    <div class="wrap" style="text-align:center;max-width:900px">
+      <span class="eyebrow">In The Spotlight</span>
+      <h2>Press &amp; Media</h2>
+      <p style="color:var(--mut);font-size:1.15rem">
+        For two decades DreamAuthentics has been the arcade the media turns to — featured across national television,
+        the biggest names in print, and the gaming press. Here's a look at the coverage.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:40px">
+    <div class="wrap">
+      <h2 style="font-size:1.4rem">Featured In</h2>
+      <div class="marquee" style="margin-top:20px">
+        {featured.map(f => <span class="chip">{f}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:20px">
+    <div class="wrap">
+      <h2 style="font-size:1.4rem">Watch</h2>
+      <p style="color:var(--mut);margin-bottom:22px">Television features and product films — from the full <a href={channelUrl} target="_blank" rel="noopener">Rick Barretto YouTube channel</a>.</p>
+      <div class="grid videos">
+        {videos.map(v => (
+          <div>
+            <iframe class="video" src={`https://www.youtube-nocookie.com/embed/${v.id}`} title={v.title}
+              loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p style="color:var(--mut);font-size:.95rem;margin:.5em 0 0">{v.title}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:20px">
+    <div class="wrap">
+      <h2 style="font-size:1.4rem">Press Archive</h2>
+      <p style="color:var(--mut);margin-bottom:22px">{clippings.length} clippings from our media archive — magazines, newspapers, and online features from around the world.</p>
+      <div class="grid clips">
+        {clippings.map(c => (
+          <figure class="clip" style="margin:0">
+            <img src={c.src} alt={c.label} loading="lazy" />
+            <figcaption class="cap">{c.label}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

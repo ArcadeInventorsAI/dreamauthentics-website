@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+const cabs=[
+ {n:'Excalibur',i:'mala5.png',h:'/arcades/excalibur/'},{n:'Katana',i:'mala3.png',h:'/arcades/katana/'},
+ {n:'Ultra Quad',i:'mala4.png',h:'/arcades/ultra-quad/'},{n:'Sting',i:'mala2.png',h:'/arcades/sting/'},
+ {n:'Eladius',i:'mala1.png',h:'/arcades/eladius/'},{n:'Kiocade',i:'mala6.png',h:'/arcades/kiocade/'}];
+---
+<Base title="Custom Arcade Cabinets — DreamAuthentics">
+  <section class="section" style="background:linear-gradient(180deg,#0f1d3d,#0a1226)">
+    <div class="wrap" style="text-align:center;max-width:860px">
+      <span class="eyebrow">Custom Dream Home Arcades</span><h2>Pick Your Personal Video Arcade</h2>
+      <p style="color:var(--mut);font-size:1.12rem">Every DreamAuthentics cabinet is built to order and finished with fully-custom art. Choose a model below, then request a quote — we design it around you.</p>
+    </div>
+  </section>
+  <section class="section"><div class="wrap">
+    <div class="grid cabs">
+      {cabs.map(c=>(<a class="card cab" href={c.h}><div class="body"><img src={`/img/hero/${c.i}`} alt={c.n}/><div class="name">{c.n}</div></div></a>))}
+    </div>
+    <p style="text-align:center;margin-top:34px"><a class="btn" href="/contact/">Request a Quote</a></p>
+  </div></section>
+</Base>

@@ -1,0 +1,64 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import { asSeenOn } from '../data/nav.js';
+const { title = 'DreamAuthentics — Custom Home Arcades', description = 'Industry-leading custom video arcade cabinets since 2000. Defining the personal video arcade.' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+</head>
+<body>
+  <div class="callbar">
+    <div class="wrap">
+      <a href="tel:8007898424">800-789-8424</a>
+      <span class="tag">Industry-Leading Custom Gaming Innovators Since 2000</span>
+    </div>
+  </div>
+
+  <header class="masthead">
+    <div class="wrap">
+      <a class="logo" href="/"><img src="/img/brand/logo.png" alt="DreamAuthentics" /></a>
+      <div class="seenon">
+        <span class="lbl">As Seen On</span>
+        {asSeenOn.map(l => <img src={l.src} alt={l.alt} title={l.alt} />)}
+      </div>
+    </div>
+  </header>
+
+  <Nav />
+
+  <main>
+    <slot />
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <h4>DreamAuthentics</h4>
+          <p>Defining the personal video arcade since 2000. Custom home arcades, rentals, and controls — handcrafted in the USA.</p>
+          <p><a href="tel:8007898424">800-789-8424</a></p>
+        </div>
+        <div>
+          <h4>Arcades</h4>
+          <p><a href="/arcades/excalibur/">Excalibur</a><br/><a href="/arcades/katana/">Katana</a><br/><a href="/arcades/ultra-quad/">Ultra Quad</a><br/><a href="/arcades/">All Cabinets</a></p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <p><a href="/portfolio/">Design Art Portfolio</a><br/><a href="/gallery/">Gallery</a><br/><a href="/press/">Press &amp; Media</a><br/><a href="/trade-my-arcade/">Trade My Arcade</a></p>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <p><a href="/about/">About Us</a><br/><a href="/contact/">Contact</a><br/><a href="/arcade-rentals/">Arcade Rentals</a></p>
+        </div>
+      </div>
+      <div class="fine">© {new Date().getFullYear()} DreamAuthentics. All rights reserved. · As seen on G4, FOX, CBS, MTV, HGTV &amp; Good Morning America.</div>
+    </div>
+  </footer>
+</body>
+</html>

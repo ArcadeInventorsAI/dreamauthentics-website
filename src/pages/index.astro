@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+const GW = 1240, GH = 730;
+// hero layers rebuilt from the original "Your Dream Machine" slide (px on a 1240x730 grid)
+const layers = [
+  { img:'crta.png',             x:-233, y:286, w:1736, h:289 },
+  { img:'postolje.png',         x:128,  y:511, w:952,  h:217 },
+  { img:'glavnakonzola.png',    x:449,  y:138, w:317,  h:497, href:'/arcades/' },
+  { img:'mala1.png', x:22,  y:330, w:126, h:207, href:'/arcades/eladius/',    name:'Eladius' },
+  { img:'mala2.png', x:157, y:329, w:109, h:209, href:'/arcades/sting/',      name:'Sting' },
+  { img:'mala3.png', x:272, y:362, w:123, h:176, href:'/arcades/katana/',     name:'Katana' },
+  { img:'mala4.png', x:822, y:328, w:114, h:211, href:'/arcades/ultra-quad/', name:'Ultra Quad' },
+  { img:'mala5.png', x:956, y:329, w:104, h:209, href:'/arcades/excalibur/',  name:'Excalibur' },
+  { img:'mala6.png', x:1082,y:324, w:87,  h:214, href:'/arcades/kiocade/',    name:'Kiocade' },
+  { img:'pickyour.png',         x:512, y:51,  w:616, h:151 },
+  { img:'webuildyourdreams.png',x:104, y:118, w:387, h:138 },
+  { img:'yourdreammachine.png', x:408, y:591, w:404, h:115, href:'/arcades/' },
+];
+const pct = (v,d) => (v/d*100).toFixed(3)+'%';
+const cabinets = [
+  { name:'Excalibur',  img:'mala5.png', href:'/arcades/excalibur/',  tag:'The flagship 4-player showpiece' },
+  { name:'Katana',     img:'mala3.png', href:'/arcades/katana/',     tag:'Sleek single-player icon' },
+  { name:'Ultra Quad', img:'mala4.png', href:'/arcades/ultra-quad/', tag:'Four players, endless play' },
+  { name:'Sting',      img:'mala2.png', href:'/arcades/sting/',      tag:'Classic upright, modern guts' },
+  { name:'Eladius',    img:'mala1.png', href:'/arcades/eladius/',    tag:'Art-forward custom build' },
+  { name:'Kiocade',    img:'mala6.png', href:'/arcades/kiocade/',    tag:'Compact powerhouse' },
+];
+---
+<Base>
+  <section class="hero" style={`background-image:url('/img/hero/bghero1.jpg');aspect-ratio:${GW}/${GH}`}>
+    {layers.map(l => {
+      const box = `left:${pct(l.x,GW)};top:${pct(l.y,GH)};width:${pct(l.w,GW)};height:${pct(l.h,GH)}`;
+      return l.href
+        ? <a href={l.href} class="hl" style={box} title={l.name}><img src={`/img/hero/${l.img}`} alt={l.name||''} style="width:100%;height:100%;object-fit:contain" loading="eager" /></a>
+        : <img class="hl" src={`/img/hero/${l.img}`} alt={l.name||''} style={box} loading="eager" />;
+    })}
+  </section>
+
+  <section class="section">
+    <div class="wrap" style="text-align:center;max-width:820px">
+      <span class="eyebrow">Since 2000</span>
+      <h2 class="retro" style="font-size:clamp(1.2rem,3.2vw,2rem)">Arcade Games for Sale &amp; Rent<br/>by DreamAuthentics</h2>
+      <p style="color:var(--mut);font-size:1.15rem;margin-top:18px">
+        DreamAuthentics is the world's premiere custom arcade design and manufacturing company. Since the year 2000
+        we have defined the personal custom arcade industry — transforming your video-game dreams into reality with
+        commercially-built, multi-game personalized retro arcade machines that look as incredible as they play.
+      </p>
+      <p style="margin-top:26px">
+        <a class="btn" href="/arcades/">Explore the Cabinets</a>
+        &nbsp;<a class="btn ghost" href="/portfolio/">Design Art Portfolio</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="background:linear-gradient(180deg,#0b1631,#0a1226)">
+    <div class="wrap">
+      <span class="eyebrow">Pick Your Personal Video Arcade</span>
+      <h2>Custom Dream Home Arcades</h2>
+      <div class="grid cabs" style="margin-top:34px">
+        {cabinets.map(c => (
+          <a class="card cab" href={c.href}>
+            <div class="body">
+              <img src={`/img/hero/${c.img}`} alt={c.name} />
+              <div class="name">{c.name}</div>
+              <p style="color:var(--mut);font-size:.95rem;margin:.2em 0 0">{c.tag}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p style="text-align:center;margin-top:34px"><a class="btn" href="/arcades/">See All Cabinets &amp; Request a Quote</a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      <a class="card" href="/arcade-rentals/"><div class="body"><h3>Arcade Rentals</h3><p style="color:var(--mut)">Bring the arcade to your event — corporate parties, weddings, and more, from a fleet of 200+ machines.</p></div></a>
+      <a class="card" href="/portfolio/"><div class="body"><h3>Design Art Portfolio</h3><p style="color:var(--mut)">Decades of professionally-designed custom cabinet art — our showcase gallery of dream machines.</p></div></a>
+      <a class="card" href="/press/"><div class="body"><h3>Press &amp; Media</h3><p style="color:var(--mut)">Featured on FOX, CBS, MTV, HGTV, G4 &amp; Good Morning America — plus Rolling Stone, Fortune &amp; more.</p></div></a>
+    </div>
+  </section>
+</Base>
