@@ -9,6 +9,10 @@ const EXACT = {
   // home / menu / old sitemap
   "/index.html": "/", "/index_mainmenu.html": "/", "/index-m.htm": "/", "/index-y.htm": "/",
   "/sitemap.html": "/", "/cool_toys.html": "/", "/cfest.html": "/", "/demopage3.html": "/",
+  "/home": "/",
+  // high-value PDFs still ranking in Search Console (redirect to the closest live page)
+  "/support/4playerarcadegames.pdf": "/game-list/",
+  "/wp-content/uploads/2016/05/DreamAuthenticsArtGuide.pdf": "/portfolio/",
   // about / company
   "/about.html": "/about/", "/about_us.html": "/about/", "/index_about.html": "/about/",
   "/tour.htm": "/about/", "/faq.html": "/about/", "/index_FAQ.htm": "/about/",
@@ -102,6 +106,22 @@ const PREFIX = [
   ["/arcades/custom/trade-my-arcade", "/trade-my-arcade/"],
   ["/arcades/custom", "/arcades/"],
   ["/arcade-game-rentals", "/arcades/"],
+  // WooCommerce store (removed) — product-category rules BEFORE generic /product & /shop
+  ["/product-category/control-panels", "/controls/"],
+  ["/product-category/katana", "/arcades/katana/"],
+  ["/product-category/excalibur", "/arcades/excalibur/"],
+  ["/product-category/eladius", "/arcades/eladius/"],
+  ["/product-category/sting", "/arcades/sting/"],
+  ["/product-category/ultra-quad", "/arcades/ultra-quad/"],
+  ["/product-category/kiocade", "/arcades/kiocade/"],
+  ["/product-category", "/arcades/"],
+  ["/product/", "/arcades/"],
+  ["/shop", "/arcades/"],
+  ["/cart", "/contact/"],
+  ["/checkout", "/contact/"],
+  ["/my-account", "/contact/"],
+  ["/images/press", "/press/"],
+  ["/support", "/about/"],
   ["/about-us/customer-gallery", "/gallery/"],
   ["/excalibur", "/arcades/excalibur/"],
   ["/ex_gallery", "/arcades/excalibur/"],
