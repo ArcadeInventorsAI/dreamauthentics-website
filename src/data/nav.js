@@ -27,13 +27,6 @@ export const nav = [
     ],
   },
   {
-    label: 'Arcade Rentals',
-    href: '/arcade-rentals/',
-    children: [
-      { label: 'Pac-Man', href: '/arcade-rentals/pac-man/' },
-    ],
-  },
-  {
     label: 'Controls',
     href: '/controls/',
     children: [

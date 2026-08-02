@@ -1,9 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
-const cabs=[
- {n:'Excalibur',i:'mala5.png',h:'/arcades/excalibur/'},{n:'Katana',i:'mala3.png',h:'/arcades/katana/'},
- {n:'Ultra Quad',i:'mala4.png',h:'/arcades/ultra-quad/'},{n:'Sting',i:'mala2.png',h:'/arcades/sting/'},
- {n:'Eladius',i:'mala1.png',h:'/arcades/eladius/'},{n:'Kiocade',i:'mala6.png',h:'/arcades/kiocade/'}];
+import { cabinets } from '../../data/cabinets.js';
+const cabs=Object.entries(cabinets).map(([s,o])=>({n:o.name,i:o.konzola,h:`/arcades/${s}/`}));
 ---
 <Base title="Custom Arcade Cabinets — DreamAuthentics">
   <section class="section" style="background:linear-gradient(180deg,#0f1d3d,#0a1226)">
@@ -14,7 +12,7 @@ const cabs=[
   </section>
   <section class="section"><div class="wrap">
     <div class="grid cabs">
-      {cabs.map(c=>(<a class="card cab" href={c.h}><div class="body"><img src={`/img/hero/${c.i}`} alt={c.n}/><div class="name">{c.n}</div></div></a>))}
+      {cabs.map(c=>(<a class="card cab" href={c.h}><div class="body"><img src={c.i} alt={c.n} style="height:200px"/><div class="name">{c.n}</div></div></a>))}
     </div>
     <p style="text-align:center;margin-top:34px"><a class="btn" href="/contact/">Request a Quote</a></p>
   </div></section>
