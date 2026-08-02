@@ -1,0 +1,39 @@
+backend:
+  name: github
+  repo: ArcadeInventorsAI/dreamauthentics-website
+  branch: main
+  base_url: https://dreamauthentics.com
+  auth_endpoint: /api/auth
+
+site_url: https://dreamauthentics.com
+display_url: https://dreamauthentics.com
+publish_mode: simple
+
+media_folder: "public/img/blog"
+public_folder: "/img/blog"
+
+collections:
+  - name: blog
+    label: "Blog Posts"
+    label_singular: "Blog Post"
+    description: "Articles for the DreamAuthentics blog."
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    preview_path: "blog/{{slug}}"
+    sortable_fields: [pubDate, title]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Short description (for search & cards)", name: "description", widget: "text", required: false }
+      - { label: "Publish date", name: "pubDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Author", name: "author", widget: "string", default: "DreamAuthentics Blog Team" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        required: false
+        options: ["DreamAuthentics", "MAME & Emulators", "Controls", "Arcade Parts", "Guides", "News", "Arcade"]
+      - { label: "Header image", name: "image", widget: "image", required: false, hint: "Optional. Shown at the top of the post and on the blog list." }
+      - { label: "Draft (hide from site)", name: "draft", widget: "boolean", default: false, required: false }
+      - { label: "Body", name: "body", widget: "markdown" }

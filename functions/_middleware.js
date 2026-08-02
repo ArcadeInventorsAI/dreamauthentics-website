@@ -165,6 +165,12 @@ export async function onRequest(context) {
   const { request, next } = context;
   const url = new URL(request.url);
 
+  // Legacy blog subdomain: blog.dreamauthentics.com/blog/<cat>/0/0/<slug> -> apex /blog/<slug>/.
+  if (url.hostname.startsWith("blog.")) {
+    const m = url.pathname.match(/\/0\/0\/([a-z0-9-]+)\/?$/i);
+    return Response.redirect("https://dreamauthentics.com/blog/" + (m ? m[1] + "/" : ""), 301);
+  }
+
   // Canonical host: 301 www.* -> apex so Google consolidates to one hostname.
   if (url.hostname.startsWith("www.")) {
     return Response.redirect("https://" + url.hostname.slice(4) + url.pathname + url.search, 301);

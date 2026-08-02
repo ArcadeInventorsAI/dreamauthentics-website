@@ -1,0 +1,49 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const d = post.data;
+const fmt = (x) => x.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const ld = {
+  "@context": "https://schema.org", "@type": "BlogPosting",
+  "headline": d.title,
+  "datePublished": d.pubDate.toISOString(),
+  "author": { "@type": "Organization", "name": d.author || "DreamAuthentics" },
+  "publisher": { "@type": "Organization", "name": "DreamAuthentics", "logo": { "@type": "ImageObject", "url": "https://dreamauthentics.com/img/brand/logo.png" } },
+  "mainEntityOfPage": `https://dreamauthentics.com/blog/${post.slug}/`,
+  ...(d.image ? { "image": `https://dreamauthentics.com${d.image}` } : {}),
+  ...(d.description ? { "description": d.description } : {}),
+};
+---
+<Base title={`${d.title} — DreamAuthentics Blog`}
+      description={d.description || `${d.title} — from the DreamAuthentics arcade blog.`}
+      image={d.image || '/img/cab/works-mame.jpg'} ogType="article">
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  <article class="section">
+    <div class="wrap post" style="max-width:820px">
+      <p style="margin-bottom:10px"><a href="/blog/" style="color:var(--gold)">← All posts</a></p>
+      {d.category && <span class="eyebrow">{d.category}</span>}
+      <h1 style="margin:.15em 0">{d.title}</h1>
+      <p class="meta" style="color:var(--mut)">{fmt(d.pubDate)} · {d.author}</p>
+      {d.image && <img src={d.image} alt={d.title} class="posthero" loading="eager" />}
+      <div class="prose">
+        <Content />
+      </div>
+      <hr class="rule" />
+      <div class="postcta">
+        <h3>Ready to build your own?</h3>
+        <p style="color:var(--mut)">Every DreamAuthentics arcade is handcrafted to order in Indianapolis, Indiana.</p>
+        <a class="btn" href="/contact/">Request a Quote</a>
+        &nbsp;<a class="btn ghost" href="/arcades/">See the Cabinets</a>
+      </div>
+    </div>
+  </article>
+</Base>

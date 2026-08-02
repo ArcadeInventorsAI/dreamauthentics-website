@@ -1,9 +1,41 @@
 ---
-import Page from '../../components/Page.astro';
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const fmt = (d) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
-<Page title="Blog" eyebrow="News"
-  metaTitle="Blog & News — Custom Home Arcade Builds | DreamAuthentics"
-  description="Stories, custom arcade builds, and news from the DreamAuthentics workshop — behind-the-scenes looks at how the finest custom home arcade machines are made."
-  blurb="Stories, builds, and news from the DreamAuthentics workshop.">
-  <p style="color:var(--mut);text-align:center">Content for this section is being migrated from our archive. Call <a href="tel:8007898424">800-789-8424</a> or <a href="/contact/">contact us</a> and we'll help right away.</p>
-</Page>
+<Base title="Blog & News — Custom Home Arcade Builds | DreamAuthentics"
+      description="Stories, guides, and news from the DreamAuthentics workshop — arcade cabinets, MAME, controls, and the craft behind the finest custom home arcades since 2000.">
+  <section class="section" style="background:linear-gradient(180deg,#0f1d3d,#0a1226);text-align:center">
+    <div class="wrap" style="max-width:860px">
+      <span class="eyebrow">The DreamAuthentics Blog</span>
+      <h2>Arcade Knowledge &amp; Workshop Stories</h2>
+      <p style="color:var(--mut);font-size:1.12rem">Guides, history, and behind-the-scenes from 20+ years
+        building custom home arcades — joysticks and monitors to MAME and museum-grade cabinet art.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      {posts.length === 0 && (
+        <p style="color:var(--mut);text-align:center">New posts are on the way. Meanwhile,
+          <a href="/contact/">tell us about your dream build</a>.</p>
+      )}
+      <div class="bloglist">
+        {posts.map((p) => (
+          <a class="card blogcard" href={`/blog/${p.slug}/`}>
+            {p.data.image && <div class="thumb"><img src={p.data.image} alt={p.data.title} loading="lazy" /></div>}
+            <div class="body">
+              {p.data.category && <span class="eyebrow">{p.data.category}</span>}
+              <h3>{p.data.title}</h3>
+              <p class="meta">{fmt(p.data.pubDate)}</p>
+              {p.data.description && <p style="color:var(--mut)">{p.data.description}</p>}
+              <span class="readmore">Read more →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
