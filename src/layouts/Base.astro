@@ -16,8 +16,10 @@ const GA_ID = import.meta.env.PUBLIC_GA_ID || '';
 const org = {
   "@context":"https://schema.org","@type":"Organization",
   "name":"DreamAuthentics","url":site,"logo":`${site}/img/brand/logo.png`,
-  "description":"Custom home arcade machine design and manufacturing since 2000.",
+  "description":"Custom home arcade machine design and manufacturing since 2000, handcrafted in Indianapolis, Indiana.",
   "foundingDate":"2000","telephone":"+1-800-789-8424",
+  "address":{"@type":"PostalAddress","addressLocality":"Indianapolis","addressRegion":"IN","addressCountry":"US"},
+  "areaServed":"US",
   "sameAs":["https://www.youtube.com/@RickBarretto"]
 };
 ---
@@ -79,7 +81,7 @@ const org = {
       <div class="cols">
         <div>
           <h4>DreamAuthentics</h4>
-          <p>Defining the personal video arcade since 2000. Custom home arcades and controls — handcrafted in the USA.</p>
+          <p>Defining the personal video arcade since 2000. Custom home arcades and controls — handcrafted in Indianapolis, Indiana, USA.</p>
           <p><a href="tel:8007898424">800-789-8424</a></p>
         </div>
         <div>
