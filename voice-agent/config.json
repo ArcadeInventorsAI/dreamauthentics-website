@@ -1,0 +1,51 @@
+{
+  "agent": {
+    "name": "DreamAuthentics - Anna (Receptionist)",
+    "platform": "ElevenLabs Conversational AI",
+    "system_prompt_file": "agent-system-prompt.md",
+    "first_message": "Thank you for calling DreamAuthentics.com, the leading manufacturer of personal video arcade products! How may I help you today?"
+  },
+  "voice": {
+    "provider": "elevenlabs",
+    "name": "DreamAuthentics - Anna",
+    "voice_id": "WXCY5NCSGsMq1On2Figj",
+    "cloned_from": "original 2016 DreamAuthentics IVR recordings (voice talent: Anna)",
+    "model_id": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.28,
+      "similarity_boost": 0.88,
+      "style": 0.6,
+      "use_speaker_boost": true
+    }
+  },
+  "telephony": {
+    "provider": "twilio",
+    "phone_number": "+18007898424",
+    "display": "800-789-8424",
+    "ported_from": "Grasshopper",
+    "notes": "Import into ElevenLabs via POST /v1/convai/phone-numbers, then assign this agent. A2P/toll-free verification only needed if SMS is added; voice does not require it."
+  },
+  "secrets": {
+    "note": "Values are NOT stored in this repo.",
+    "elevenlabs_api_key": "~/.pcos-secrets/elevenlabs.env (ELEVENLABS_API_KEY) — needs create_instant_voice_clone permission to re-clone",
+    "twilio": "~/.pcos-secrets/twilio.env (TWILIO_ACCOUNT_SID / TWILIO_AUTH_TOKEN / TWILIO_PHONE_NUMBER)"
+  },
+  "links": {
+    "gallery": "https://dreamauthentics.com/gallery/",
+    "hall_of_fame": "https://www.ivghof.info/",
+    "video_games_live": "https://www.videogameslive.com",
+    "family": {
+      "arcade_inventors": "https://arcadeinventors.com",
+      "tornado_spinner": "https://tornadospinner.com",
+      "retroblast": "https://retroblast.com",
+      "video_game_palooza": "https://videogamepalooza.org"
+    }
+  },
+  "departments": {
+    "sales": "sales@dreamauthentics.com",
+    "customer_service": "support@dreamauthentics.com",
+    "technical_support": "helpdesk@dreamauthentics.com",
+    "speaking_book": "bookings@dreamauthentics.com"
+  },
+  "status": "voice cloned + script/audio approved; next: create ElevenLabs agent, wire Twilio, test call"
+}
