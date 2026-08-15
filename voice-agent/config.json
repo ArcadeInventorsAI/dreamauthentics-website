@@ -3,7 +3,10 @@
     "name": "DreamAuthentics - Anna (Receptionist)",
     "platform": "ElevenLabs Conversational AI",
     "system_prompt_file": "agent-system-prompt.md",
-    "first_message": "Thank you for calling DreamAuthentics.com, the leading manufacturer of personal video arcade products! How may I help you today?"
+    "first_message": "Thank you for calling DreamAuthentics.com, the leading manufacturer of personal video arcade products! How may I help you today?",
+    "agent_id": "agent_4901m03rm7gweg18s1sadwskt244",
+    "llm": "gpt-4o-mini",
+    "tts_model_for_convai": "eleven_turbo_v2"
   },
   "voice": {
     "provider": "elevenlabs",
@@ -23,11 +26,14 @@
     "phone_number": "+18007898424",
     "display": "800-789-8424",
     "ported_from": "Grasshopper",
-    "notes": "Import into ElevenLabs via POST /v1/convai/phone-numbers, then assign this agent. A2P/toll-free verification only needed if SMS is added; voice does not require it."
+    "notes": "Import into ElevenLabs via POST /v1/convai/phone-numbers, then assign this agent. A2P/toll-free verification only needed if SMS is added; voice does not require it.",
+    "elevenlabs_phone_number_id": "phnum_8901m03rn12ff1ztem3pwnhscnc1",
+    "twilio_voice_url": "https://api.elevenlabs.io/twilio/inbound_call",
+    "status": "LIVE \u2014 inbound calls route to the agent"
   },
   "secrets": {
     "note": "Values are NOT stored in this repo.",
-    "elevenlabs_api_key": "~/.pcos-secrets/elevenlabs.env (ELEVENLABS_API_KEY) — needs create_instant_voice_clone permission to re-clone",
+    "elevenlabs_api_key": "~/.pcos-secrets/elevenlabs.env (ELEVENLABS_API_KEY) \u2014 needs create_instant_voice_clone permission to re-clone",
     "twilio": "~/.pcos-secrets/twilio.env (TWILIO_ACCOUNT_SID / TWILIO_AUTH_TOKEN / TWILIO_PHONE_NUMBER)"
   },
   "links": {
@@ -47,5 +53,5 @@
     "technical_support": "helpdesk@dreamauthentics.com",
     "speaking_book": "bookings@dreamauthentics.com"
   },
-  "status": "voice cloned + script/audio approved; next: create ElevenLabs agent, wire Twilio, test call"
+  "status": "LIVE 2026-08-15 \u2014 agent built + Twilio 800 wired; call 800-789-8424 to reach Anna."
 }
