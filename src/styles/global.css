@@ -201,3 +201,9 @@ footer .fine{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);t
 .rule{border:none;border-top:1px solid #24304f;margin:2.4em 0 1.6em}
 .postcta{text-align:center;background:linear-gradient(180deg,#0f1d3d,#0a1226);border:1px solid #24304f;border-radius:14px;padding:28px 22px}
 .postcta h3{margin:.1em 0 .3em}
+
+.callbar .quotebtn{color:#231a00;background:linear-gradient(180deg,var(--gold),#d99400);
+  padding:7px 18px;border-radius:7px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;font-size:13px;white-space:nowrap;margin-left:18px;text-decoration:none}
+.callbar .quotebtn:hover{transform:translateY(-1px)}
+@media (max-width:720px){.callbar .quotebtn{display:none}}

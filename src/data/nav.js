@@ -64,7 +64,6 @@ export const nav = [
   },
   { label: 'Store', href: 'https://shop.videogamepalooza.org/collections/dreamauthentics-arcades', external: true },
   { label: 'Contact', href: '/contact/' },
-  { label: 'Request a Quote', href: '/contact/', cta: true },
 ];
 
 export const asSeenOn = [
